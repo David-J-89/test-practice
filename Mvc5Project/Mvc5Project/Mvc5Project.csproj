@@ -179,9 +179,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\BlogDbContext\201811250415395_Blog.cs" />
-    <Compile Include="Migrations\BlogDbContext\201811250415395_Blog.Designer.cs">
-      <DependentUpon>201811250415395_Blog.cs</DependentUpon>
+    <Compile Include="Migrations\BlogDbContext\201811252346192_Blog.cs" />
+    <Compile Include="Migrations\BlogDbContext\201811252346192_Blog.Designer.cs">
+      <DependentUpon>201811252346192_Blog.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\BlogDbContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -265,8 +265,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\BlogDbContext\201811250415395_Blog.resx">
-      <DependentUpon>201811250415395_Blog.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\BlogDbContext\201811252346192_Blog.resx">
+      <DependentUpon>201811252346192_Blog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

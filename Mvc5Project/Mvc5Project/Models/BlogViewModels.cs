@@ -11,22 +11,22 @@ namespace Mvc5Project.Models
         public string Id { get; set; }
 
         [Required]
-        [StringLength(50, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 5)]
+        //[StringLength(50, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 5)]
         [Display(Name = "Title")]
         public string Title { get; set; }
 
         [Required]
-        [StringLength(250, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 20)]
+        //[StringLength(250, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 20)]
         [Display(Name = "ShortDescription")]
         public string ShortDescription { get; set; }
 
         [Required]
-        [StringLength(5000, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 500)]
+        //[StringLength(5000, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 500)]
         [Display(Name = "Body")]
         public string Body { get; set; }
 
         [Required]
-        [StringLength(25, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 5)]
+        //[StringLength(25, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 5)]
         [Display(Name = "Meta")]
         public string Meta { get; set; }
 
@@ -63,7 +63,7 @@ namespace Mvc5Project.Models
         public string UrlSeo { get; set; }
 
         [Required]
-        [StringLength(20, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 5)]
+        //[StringLength(20, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 5)]
         [Display(Name = "Description")]
         public string Description { get; set; }
 
@@ -100,7 +100,7 @@ namespace Mvc5Project.Models
         public string Username { get; set; }
 
         [Required]
-        [StringLength(1000, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 25)]
+        //[StringLength(1000, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 25)]
 
         public string Body { get; set; }
 
@@ -132,7 +132,7 @@ namespace Mvc5Project.Models
         public string Username { get; set; }
 
         [Required]
-        [StringLength(1000, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 25)]
+        //[StringLength(1000, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 25)]
         public string Body { get; set; }
 
         [DefaultValue(false)]
@@ -155,7 +155,7 @@ namespace Mvc5Project.Models
 
         [Required]
         [Display(Name = "UrlSeo")]
-        [StringLength(20, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 5)]
+        // [StringLength(20, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 5)]
         public string UrlSeo { get; set; }
 
         public bool Checked { get; set; }
