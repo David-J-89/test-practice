@@ -72,4 +72,5 @@ namespace Mvc5Project.Models
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
     }
+
 }
