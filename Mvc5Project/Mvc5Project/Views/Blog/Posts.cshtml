@@ -1,0 +1,20 @@
+﻿@model Mvc5Project.Models.BlogViewModel
+
+@using Mvc5Project.Controllers
+@{ BlogController blogCtrl = new BlogController();
+    
+ }
+
+@foreach (var post in BlogController.postList)
+{
+    var total = post.PostLikes - post.PostDislikes;
+    <div class="postDescContainer">
+        <div class="postPubDate">
+            <div>@post.PostedOn.ToShortDateString()</div>
+        </div>
+        <a href="#">
+            <div class="postDescTitle"><h3>@Html.ActionLink(@post.Title, "Post", "Blog", new { slug = @post.UrlSlug }, null)</h3></div>
+        </a>
+    </div>
+}
+

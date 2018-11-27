@@ -1,0 +1,17 @@
+﻿
+@model Mvc5Project.Models.BlogViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="blogContainer">
+    <div class="mainblogview">
+        @{ Html.RenderPartial("Posts");}
+    </div>
+    <div class="mainblogbar">
+
+    </div>
+</div>
+
