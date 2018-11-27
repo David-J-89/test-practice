@@ -17,6 +17,30 @@ namespace Mvc5Project.DAL
 
 
 
+
+        public int LikeDislikeCount(string typeAndlike, string id)
+        {
+            switch (typeAndlike)
+            {
+                case "postlike":
+                    return _context.PostLikes.Where(p => p.PostId == id && p.Like == true).Count();
+                case "postdislike":
+                    return _context.PostLikes.Where(p => p.PostId == id && p.Dislike == true).Count();
+                case "commentlike":
+                    return _context.CommentLikes.Where(p => p.CommentId == id && p.Like == true).Count();
+                case "commentdislike":
+                    return _context.CommentLikes.Where(p => p.CommentId == id && p.Dislike == true).Count();
+                case "replylike":
+                    return _context.ReplyLikes.Where(p => p.ReplyId == id && p.Like == true).Count();
+                case "replydislike":
+                    return _context.ReplyLikes.Where(p => p.ReplyId == id && p.Dislike == true).Count();
+                default:
+                    return 0;
+            }
+        }
+
+
+
         public IList<Post> GetPosts()
         {
             return _context.Posts.ToList();
@@ -55,30 +79,7 @@ namespace Mvc5Project.DAL
             return videos;
         }
 
-        public int LikeDislikeCount(string typeAndlike, string id)
-        {
-            switch (typeAndlike)
-            {
-                case "postlike":
-                    return _context.PostLikes.Where(p => p.PostId == id && p.Like == true).Count();
-                case "postdislike":
-                    return _context.PostLikes.Where(p => p.PostId == id && p.Dislike == true).Count();
-                case "commentlike":
-                    return _context.CommentLikes.Where(p => p.CommentId == id && p.Like == true).Count();
-                case "commentdislike":
-                    return _context.CommentLikes.Where(p => p.CommentId == id && p.Dislike == true).Count();
-                case "replylike":
-                    return _context.ReplyLikes.Where(p => p.ReplyId == id && p.Like == true).Count();
-                case "replydislike":
-                    return _context.ReplyLikes.Where(p => p.ReplyId == id && p.Dislike == true).Count();
-                default:
-                    return 0;
-            }
-        }
-
-
         private bool disposed = false;
-
         protected virtual void Dispose(bool disposing)
         {
             if (!disposed)

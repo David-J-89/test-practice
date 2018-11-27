@@ -8,12 +8,13 @@ namespace Mvc5Project.DAL
     {
         IList<Post> GetPosts();
 
-        IList<Category> GetPostCategories();
+        IList<Category> GetPostCategories(Post post);
 
-        IList<Tag> GetPostTags();
+        IList<Tag> GetPostTags(Post post);
 
-        IList<PostVideo> GetPostVideos();
+        IList<PostVideo> GetPostVideos(Post post);
 
         int LikeDislikeCount(string typeAndlike, string id);
+
     }
 }

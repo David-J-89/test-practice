@@ -69,17 +69,17 @@ namespace Mvc5Project.Controllers
 
         public IList<Category> GetPostCategories(Post post)
         {
-            return _blogRepository.GetPostCategories();
+            return _blogRepository.GetPostCategories(post);
         }
 
         public IList<Tag> GetPostTags(Post post)
         {
-            return _blogRepository.GetPostTags();
+            return _blogRepository.GetPostTags(post);
         }
 
         public IList<PostVideo> GetPostVideos(Post post)
         {
-            return _blogRepository.GetPostVideos();
+            return _blogRepository.GetPostVideos(post);
         }
         #endregion
     }
