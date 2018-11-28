@@ -139,10 +139,10 @@ namespace Mvc5Project.Migrations.BlogDbContext
             context.PostCategories.AddOrUpdate(new Models.PostCategory { PostId = "2", CategoryId = "cat2" });
             context.PostCategories.AddOrUpdate(new Models.PostCategory { PostId = "3", CategoryId = "cat3" });
 
-            context.PostVideos.AddOrUpdate(new Models.PostVideo { Id = 1, PostId = "1", VideoSiteName = "Youtube", VideoUrl = "https://www.youtube.com/embed/HcSEU_BZwDw", VideoThumbnail = "http://img.youtube.com/vi/HcSEU_BZwSw/0.jpg" });
-            context.PostVideos.AddOrUpdate(new Models.PostVideo { Id = 1, PostId = "2", VideoSiteName = "Youtube", VideoUrl = "https://www.youtube.com/embed/HcSEU_BZwDw", VideoThumbnail = "http://img.youtube.com/vi/HcSEU_BZwSw/0.jpg" });
-            context.PostVideos.AddOrUpdate(new Models.PostVideo { Id = 1, PostId = "3", VideoSiteName = "Youtube", VideoUrl = "https://www.youtube.com/embed/HcSEU_BZwDw", VideoThumbnail = "http://img.youtube.com/vi/HcSEU_BZwSw/0.jpg" });
-            context.PostVideos.AddOrUpdate(new Models.PostVideo { Id = 1, PostId = "1", VideoSiteName = "Youtube", VideoUrl = "https://www.youtube.com/embed/HcSEU_BZwDw", VideoThumbnail = "http://img.youtube.com/vi/HcSEU_BZwSw/0.jpg" });
+            context.PostVideos.AddOrUpdate(new Models.PostVideo { Id = 1, PostId = "1", VideoSiteName = "Youtube", VideoUrl = "https://www.youtube.com/embed/Pnhxz0learg", VideoThumbnail = "http://i.ytimg.com/vi/Pnhxz0learg/maxresdefault.jpg" });
+            context.PostVideos.AddOrUpdate(new Models.PostVideo { Id = 1, PostId = "2", VideoSiteName = "Youtube", VideoUrl = "https://www.youtube.com/embed/L6-hCpnFjLg", VideoThumbnail = "http://i.ytimg.com/vi/L6-hCpnFjLg/maxresdefault.jpg" });
+            context.PostVideos.AddOrUpdate(new Models.PostVideo { Id = 1, PostId = "3", VideoSiteName = "Youtube", VideoUrl = "https://www.youtube.com/embed/bBrUrgNf5y8", VideoThumbnail = "http://i.ytimg.com/vi/bBrUrgNf5y8/maxresdefault.jpg" });
+            context.PostVideos.AddOrUpdate(new Models.PostVideo { Id = 1, PostId = "1", VideoSiteName = "Youtube", VideoUrl = "https://www.youtube.com/embed/JAzZ0R7eo_s", VideoThumbnail = "http://i.ytimg.com/vi/JAzZ0R7eo_s/maxresdefault.jpg" });
 
 
         }

@@ -25,6 +25,7 @@ namespace Mvc5Project.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
+            Posts();
             return View();
         }
 
