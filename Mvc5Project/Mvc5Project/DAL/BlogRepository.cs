@@ -79,6 +79,16 @@ namespace Mvc5Project.DAL
             return videos;
         }
 
+        public IList<Tag> GetTags()
+        {
+            return _context.Tags.ToList();
+        }
+
+        public IList<Category> GetCategories()
+        {
+            return _context.Categories.ToList();
+        }
+
         private bool disposed = false;
         protected virtual void Dispose(bool disposing)
         {

@@ -16,5 +16,10 @@ namespace Mvc5Project.DAL
 
         int LikeDislikeCount(string typeAndlike, string id);
 
+
+        IList<Tag> GetTags();
+
+        IList<Category> GetCategories();
+
     }
 }

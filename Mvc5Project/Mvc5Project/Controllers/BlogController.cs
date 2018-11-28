@@ -1,6 +1,8 @@
 ﻿using Mvc5Project.DAL;
 using Mvc5Project.Models;
+using PagedList;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Mvc5Project.Controllers
@@ -9,7 +11,9 @@ namespace Mvc5Project.Controllers
     {
 
         private IBlogRepository _blogRepository;
-        public static List<BlogViewModel> postList = new List<BlogViewModel>(); //static list of posts to use in the view
+        public static List<BlogViewModel> postList = new List<BlogViewModel>(); //static list of posts to use in the view.
+        public static List<AllPostsViewModel> checkCatList = new List<AllPostsViewModel>(); //Create lists for filtering based on category.
+        public static List<AllPostsViewModel> checkTagList = new List<AllPostsViewModel>(); //Create lists for filtering based on tag.
 
         public BlogController()
         {
@@ -23,16 +27,23 @@ namespace Mvc5Project.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult Index()
+        public ActionResult Index(int? page, string sortOrder, string searchString, string[] searchCategory, string[] searchTag)
         {
-            Posts();
+            Posts(page, sortOrder, searchString, searchCategory, searchTag);
             return View();
         }
 
         [ChildActionOnly]
-        public ActionResult Posts()
+        public ActionResult Posts(int? page, string sortOrder, string searchString, string[] searchCategory, string[] searchTag) //Adds paging, filtering, and sorting
         {
             postList.Clear();
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.CurrentSearchString = searchString;
+            ViewBag.CurrentSearchCategory = searchCategory;
+            ViewBag.CurrentSearchTag = searchTag;
+            ViewBag.CurrentDateSortParm = string.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
+            ViewBag.TitleSortParm = sortOrder == "Title" ? "tile_desc" : "Title";
 
             var posts = _blogRepository.GetPosts();
             foreach (var post in posts)
@@ -57,7 +68,83 @@ namespace Mvc5Project.Controllers
                 });
             }
 
-            return PartialView("Posts");
+
+
+
+            //Get the posts that contain user's input
+            if (searchString != null)
+            {
+                postList = postList.Where(x => x.Title.ToLower().Contains(searchString.ToLower())).ToList();
+            }
+
+            if (searchCategory != null)
+            {
+                List<BlogViewModel> newlist = new List<BlogViewModel>();
+                foreach (var catName in searchCategory)
+                {
+                    foreach (var item in postList)
+                    {
+                        if (item.PostCategories.Where(x => x.Name == catName).Any())
+                        {
+                            newlist.Add(item);
+                        }
+                    }
+                    foreach (var item in checkCatList)
+                    {
+                        if (item.Category.Name == catName)
+                        {
+                            item.Checked = true;
+                        }
+                    }
+                }
+                postList = postList.Intersect(newlist).ToList(); //lookup 'intersect' later.
+            }
+
+            if (searchTag != null)
+            {
+                List<BlogViewModel> newlist = new List<BlogViewModel>();
+                foreach (var tagName in searchTag)
+                {
+                    foreach (var item in postList)
+                    {
+                        if (item.PostTags.Where(x => x.Name == tagName).Any())
+                        {
+                            newlist.Add(item);
+                        }
+                    }
+                    foreach (var item in checkTagList)
+                    {
+                        if (item.Tag.Name == tagName)
+                        {
+                            item.Checked = true;
+                        }
+                    }
+                }
+                postList = postList.Intersect(newlist).ToList();
+            }
+
+            switch (sortOrder) //lookup more about switch and case and break later.
+            {
+                case "date_desc":
+                    postList = postList.OrderByDescending(x => x.PostedOn).ToList();
+                    break;
+                case "Title":
+                    postList = postList.OrderBy(x => x.Title).ToList();
+                    break;
+                case "title_desc":
+                    postList = postList.OrderByDescending(x => x.Title).ToList();
+                    break;
+                default:
+                    postList = postList.OrderBy(x => x.PostedOn).ToList();
+                    break;
+            }
+
+
+            //how many posts to display on a page.
+            int pageSize = 2;
+            int pageNumber = (page ?? 1);
+
+            return PartialView("Posts", postList.ToPagedList(pageNumber, pageSize));
         }
 
 
@@ -81,6 +168,18 @@ namespace Mvc5Project.Controllers
         public IList<PostVideo> GetPostVideos(Post post)
         {
             return _blogRepository.GetPostVideos(post);
+        }
+
+        public void CreateCatandTagList()
+        {
+            foreach (var ct in _blogRepository.GetCategories())
+            {
+                checkCatList.Add(new AllPostsViewModel { Category = ct, Checked = false });
+            }
+            foreach (var tg in _blogRepository.GetTags())
+            {
+                checkTagList.Add(new AllPostsViewModel { Tag = tg, Checked = false });
+            }
         }
         #endregion
     }
