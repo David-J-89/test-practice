@@ -29,6 +29,10 @@ namespace Mvc5Project.Controllers
         [AllowAnonymous]
         public ActionResult Index(int? page, string sortOrder, string searchString, string[] searchCategory, string[] searchTag)
         {
+            checkCatList.Clear();
+            checkTagList.Clear();
+            CreateCatandTagList();
+
             Posts(page, sortOrder, searchString, searchCategory, searchTag);
             return View();
         }
