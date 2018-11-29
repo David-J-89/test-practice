@@ -12,6 +12,7 @@ namespace Mvc5Project.Controllers
 
         private IBlogRepository _blogRepository;
         public static List<BlogViewModel> postList = new List<BlogViewModel>(); //static list of posts to use in the view.
+        public static List<AllPostsViewModel> allPostsList = new List<AllPostsViewModel>();
         public static List<AllPostsViewModel> checkCatList = new List<AllPostsViewModel>(); //Create lists for filtering based on category.
         public static List<AllPostsViewModel> checkTagList = new List<AllPostsViewModel>(); //Create lists for filtering based on tag.
 
@@ -36,6 +37,10 @@ namespace Mvc5Project.Controllers
             Posts(page, sortOrder, searchString, searchCategory, searchTag);
             return View();
         }
+
+
+
+        #region Posts/AllPosts
 
         [ChildActionOnly]
         public ActionResult Posts(int? page, string sortOrder, string searchString, string[] searchCategory, string[] searchTag) //Adds paging, filtering, and sorting
@@ -150,6 +155,129 @@ namespace Mvc5Project.Controllers
 
             return PartialView("Posts", postList.ToPagedList(pageNumber, pageSize));
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+
+        public ActionResult AllPosts(int? page, string sortOrder, string searchString, string[] searchCategory, string[] searchTag)
+        {
+            //clear the lists to prevent duplicates.
+            allPostsList.Clear();
+            checkCatList.Clear();
+            checkTagList.Clear();
+
+            //assign current filters to viewbags.
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.CurrentSearchString = searchString;
+            ViewBag.CurrentSearchCategory = searchCategory;
+            ViewBag.CurrentSearchTag = searchTag;
+            ViewBag.DateSortParm = string.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
+            ViewBag.TitleSortParm = sortOrder == "Title" ? "title_desc" : "Title";
+
+            //get all posts and for each of them create an AllPostsViewModel object and add it to the allPostsList.
+            var posts = _blogRepository.GetPosts();
+            foreach (var post in posts)
+            {
+                var postCategories = GetPostCategories(post);
+                var postTags = GetPostTags(post);
+                allPostsList.Add(new AllPostsViewModel()
+                {
+                    PostId = post.Id,
+                    Date = post.PostedOn,
+                    Description = post.ShortDescription,
+                    Title = post.Title,
+                    PostCategories = postCategories,
+                    PostTags = postTags,
+                    UrlSlug = post.UrlSeo
+                });
+            }
+
+            if (searchString != null) //filter posts if there is a value in the search table.
+            {
+                allPostsList = allPostsList.Where(x => x.Title.ToLower().Contains(searchString.ToLower())).ToList();
+            }
+
+            CreateCatandTagList(); //Create lists of categories and tags for filter.
+
+            //if any category name is checked in the view, filter the posts.
+            if (searchCategory != null)
+            {
+                List<AllPostsViewModel> newlist = new List<AllPostsViewModel>();
+                foreach (var catName in searchCategory)
+                {
+                    foreach (var item in allPostsList)
+                    {
+                        if (item.PostCategories.Where(x => x.Name == catName).Any())
+                        {
+                            newlist.Add(item);
+                        }
+                    }
+                    foreach (var item in checkCatList)
+                    {
+                        if (item.Category.Name == catName)
+                        {
+                            item.Checked = true;
+                        }
+                    }
+                }
+                allPostsList = allPostsList.Intersect(newlist).ToList();
+            }
+
+            //if any tag name is checked in the view, filter the posts.
+            if (searchTag != null)
+            {
+                List<AllPostsViewModel> newlist = new List<AllPostsViewModel>();
+                foreach (var TagName in searchTag)
+                {
+                    foreach (var item in allPostsList)
+                    {
+                        if (item.PostTags.Where(x => x.Name == tagName).Any())
+                        {
+                            newlist.Add(item);
+                        }
+                    }
+                    foreach (var item in checkTagList)
+                    {
+                        if (item.Tag.Name == TagName)
+                        {
+                            item.Checked = true;
+                        }
+                    }
+                }
+                allPostsList = allPostsList.Intersect(newlist).ToList();
+            }
+
+            //sort the post list
+            switch (sortOrder)
+            {
+                case "date_desc":
+                    allPostsList = allPostsList.OrderByDescending(x => x.Date).ToList();
+                    break;
+                case "Title":
+                    allPostsList = allPostsList.OrderBy(x => x.Title).ToList();
+                    break;
+                case "tile_desc":
+                    allPostsList = allPostsList.OrderByDescending(x => x.Title).ToList();
+                    break;
+                default:
+                    allPostsList = allPostsList.OrderBy(x => x.Date).ToList();
+                    break;
+            }
+
+            //define how many posts you want to show on each page, and return to view with model.
+            int pageSize = 2;
+            int pageNumber = (page ?? 1);
+            return View("AllPosts", allPostsList.ToPagedList(pageNumber, pageSize));
+        }
+
+        #endregion Posts/AllPosts
+
+
+        #region Rss
+
+
+
+        #endregion Rss
 
 
         //helper methods to call from view
