@@ -36,7 +36,9 @@
                     </td>
                 </tr>
                 <tr>
+                    
                     <th>Tags :</th> @* create checkboxes for each tag and check them if they were checked in the filter by the user *@
+                    <td>
                     @foreach (var tag in tags)
                     {
                         <div class="postsFltInp">
@@ -50,6 +52,7 @@
                             }
                         </div>
                     }
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2"> @*pass the current search and sort filters to the controller*@

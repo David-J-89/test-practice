@@ -231,7 +231,7 @@ namespace Mvc5Project.Controllers
                 {
                     foreach (var item in allPostsList)
                     {
-                        if (item.PostTags.Where(x => x.Name == tagName).Any())
+                        if (item.PostTags.Where(x => x.Name == TagName).Any())
                         {
                             newlist.Add(item);
                         }
