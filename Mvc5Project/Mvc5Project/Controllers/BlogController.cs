@@ -302,6 +302,14 @@ namespace Mvc5Project.Controllers
             return View(model);
         }
 
+        //add like-dislike functionality
+        public ActionResult UpdatePostLike(string postid, string slug, string username, string likeordislike, string sortorder)
+        {
+            _blogRepository.UpdatePostLike(postid, username, likeordislike);
+            return RedirectToAction("Post", new { slug = slug, sortorder = sortorder });
+        }
+
+
         #endregion Post
 
 

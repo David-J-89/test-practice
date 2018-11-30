@@ -101,6 +101,52 @@ namespace Mvc5Project.DAL
             return _context.Posts.Where(x => x.UrlSeo == slug).FirstOrDefault().Id;
         }
 
+
+        //check the postlike table to see if user has voted/liked the post.
+        public void UpdatePostLike(string postid, string username, string likeordislike)
+        {
+            var postLike = _context.PostLikes.Where(x => x.Username == username && x.PostId == postid).FirstOrDefault();
+            if (postLike != null)
+            {
+                switch (likeordislike)
+                {
+                    case "like":
+                        if (postLike.Like == false) { postLike.Like = true; postLike.Dislike = false; }
+                        else postLike.Like = false;
+                        break;
+                    case "dislike":
+                        if (postLike.Dislike == false) { postLike.Dislike = true; postLike.Like = false; }
+                        else postLike.Dislike = false;
+                        break;
+                }
+                if (postLike.Like == false && postLike.Dislike == false) _context.PostLikes.Remove(postLike);
+            }
+            else
+            {
+                switch (likeordislike)
+                {
+                    case "like":
+                        postLike = new PostLike() { PostId = postid, Username = username, Like = true, Dislike = false };
+                        _context.PostLikes.Add(postLike);
+                        break;
+                    case "dislike":
+                        postLike = new PostLike() { PostId = postid, Username = username, Like = false, Dislike = true };
+                        _context.PostLikes.Add(postLike);
+                        break;
+                }
+            }
+            var post = _context.Posts.Where(x => x.Id == postid).FirstOrDefault();
+            post.NetLikeCount = LikeDislikeCount("postlike", postid) - LikeDislikeCount("postdislike", postid);
+            Save();
+        }
+
+
+
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
+
         private bool disposed = false;
         protected virtual void Dispose(bool disposing)
         {
