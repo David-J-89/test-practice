@@ -21,5 +21,9 @@ namespace Mvc5Project.DAL
 
         IList<Category> GetCategories();
 
+
+        //add method definitions to the interface for the seo slugs in blogrepo.
+        Post GetPostById(string postid);
+        string GetPostIdBySlug(string slug);
     }
 }

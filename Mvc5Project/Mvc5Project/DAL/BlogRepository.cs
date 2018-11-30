@@ -89,6 +89,18 @@ namespace Mvc5Project.DAL
             return _context.Categories.ToList();
         }
 
+
+        //for SEO we'll use slugs and we use them to get post ids when necessary
+        public Post GetPostById(string id)
+        {
+            return _context.Posts.Find(id);
+        }
+
+        public string GetPostIdBySlug(string slug)
+        {
+            return _context.Posts.Where(x => x.UrlSeo == slug).FirstOrDefault().Id;
+        }
+
         private bool disposed = false;
         protected virtual void Dispose(bool disposing)
         {

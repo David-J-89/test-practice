@@ -3,8 +3,8 @@
 @using PagedList.Mvc;
 <link href="~/Content/css/PagedList.css" rel="stylesheet" />
 
-@{ ViewBag.Title = "AllPosts";
-    Layout = "~/Views/Shared/Layout.cshtml";
+@{ ViewBag.Title = "AllPosts";    
+    Layout = "~/Views/Shared/_Layout.cshtml";
     /* get category and tag lists */
     var categories = BlogController.checkCatList;
     var tags = BlogController.checkTagList;

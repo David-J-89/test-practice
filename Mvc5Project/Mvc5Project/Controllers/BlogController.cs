@@ -272,6 +272,38 @@ namespace Mvc5Project.Controllers
 
         #endregion Posts/AllPosts
 
+        #region Post
+
+        [HttpGet]
+        [AllowAnonymous]
+
+        public ActionResult Post(string slug)
+        {
+            PostViewModel model = new PostViewModel();
+            var posts = GetPosts(); //get all posts
+            var postid = _blogRepository.GetPostIdBySlug(slug); //get post ids
+            var post = _blogRepository.GetPostById(postid);
+            var videos = GetPostVideos(post);
+            var firstPostId = posts.OrderBy(i => i.PostedOn).First().Id;
+            var lastPostId = posts.OrderBy(i => i.PostedOn).Last().Id;
+            var nextId = posts.OrderBy(i => PostedOn).SkipWhile(i => i.Id != postid).Skip(1).Select(if => if.Id).FirstOrDefault();
+            var previousId = posts.OrderBy(i => PostedOn).TakeWhile(i => i.Id != postid).Select(i => i.Id).LastOrDefault();
+            model.FirstPostId = firstPostId;
+            model.LastPostId = firstPostId;
+            model.PreviousPostSlug = firstPostId;
+            model.NextPostSlug = posts.Where(x => x.Id == nextId).Select(x => x.UrlSeo).FirstOrDefault();
+            model.ID = post.Id;
+            model.PostCount = posts.Count();
+            model.Videos = videos;
+            model.Title = post.Title;
+            model.Body = post.Body;
+            model.PostLikes = _blogRepository.LikeDislikeCount("postlike", post.Id);
+            model.PostDislikes = _blogRepository.LikeDislikeCount("postdislike", post.Id);
+            return View(model);
+        }
+
+        #endregion Post
+
 
         #region Rss
 

@@ -293,4 +293,10 @@ namespace Mvc5Project.Models
         public string UrlSlug { get; set; }
 
     }
+
+    //create a new ViewModel for posts
+    public class PostViewModel
+    {
+
+    }
 }
