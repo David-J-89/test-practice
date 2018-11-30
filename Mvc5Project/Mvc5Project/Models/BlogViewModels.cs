@@ -297,6 +297,16 @@ namespace Mvc5Project.Models
     //create a new ViewModel for posts
     public class PostViewModel
     {
-
+        public object Body { get; set; }
+        public string FirstPostId { get; set; }
+        public object ID { get; set; }
+        public string LastPostId { get; set; }
+        public string NextPostSlug { get; set; }
+        public int PostCount { get; set; }
+        public int PostDislikes { get; set; }
+        public int PostLikes { get; set; }
+        public string PreviousPostSlug { get; set; }
+        public object Title { get; set; }
+        public IList<PostVideo> Videos { get; set; }
     }
 }
