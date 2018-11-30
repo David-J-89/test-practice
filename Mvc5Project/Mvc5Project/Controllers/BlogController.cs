@@ -294,6 +294,7 @@ namespace Mvc5Project.Controllers
             model.NextPostSlug = posts.Where(x => x.Id == nextId).Select(x => x.UrlSeo).FirstOrDefault();
             model.ID = post.Id;
             model.PostCount = posts.Count();
+            model.UrlSeo = post.UrlSeo;
             model.Videos = videos;
             model.Title = post.Title;
             model.Body = post.Body;

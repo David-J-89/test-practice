@@ -25,5 +25,10 @@ namespace Mvc5Project.DAL
         //add method definitions to the interface for the seo slugs in blogrepo.
         Post GetPostById(string postid);
         string GetPostIdBySlug(string slug);
+
+        void UpdatePostLike(string postid, string username, string likeordislike);
+
+
+        void Save();
     }
 }
