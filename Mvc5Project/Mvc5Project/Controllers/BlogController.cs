@@ -286,8 +286,8 @@ namespace Mvc5Project.Controllers
             var videos = GetPostVideos(post);
             var firstPostId = posts.OrderBy(i => i.PostedOn).First().Id;
             var lastPostId = posts.OrderBy(i => i.PostedOn).Last().Id;
-            var nextId = posts.OrderBy(i => PostedOn).SkipWhile(i => i.Id != postid).Skip(1).Select(if => if.Id).FirstOrDefault();
-            var previousId = posts.OrderBy(i => PostedOn).TakeWhile(i => i.Id != postid).Select(i => i.Id).LastOrDefault();
+            var nextId = posts.OrderBy(i => i.PostedOn).SkipWhile(i => i.Id != postid).Skip(1).Select(i => i.Id).FirstOrDefault();
+            var previousId = posts.OrderBy(i => i.PostedOn).TakeWhile(i => i.Id != postid).Select(i => i.Id).LastOrDefault();
             model.FirstPostId = firstPostId;
             model.LastPostId = firstPostId;
             model.PreviousPostSlug = firstPostId;

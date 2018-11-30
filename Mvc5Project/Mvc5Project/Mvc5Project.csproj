@@ -205,7 +205,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\post\delete.png" />
     <Content Include="Content\images\post\dislike.png" />
+    <Content Include="Content\images\post\edit.png" />
     <Content Include="Content\images\post\like.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
@@ -262,6 +264,7 @@
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Blog\Posts.cshtml" />
     <Content Include="Views\Blog\AllPosts.cshtml" />
+    <Content Include="Views\Blog\Post.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
