@@ -313,7 +313,7 @@ namespace Mvc5Project.Controllers
 
 
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult EditPost(string slug)
         {
@@ -322,7 +322,7 @@ namespace Mvc5Project.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
