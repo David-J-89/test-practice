@@ -313,5 +313,8 @@ namespace Mvc5Project.Models
 
         public string Meta { get; set; }
         public string UrlSeo { get; set; }
+
+        public IList<Category> PostCategories { get; set; }
+        public string ShortDescription { get; set; }
     }
 }

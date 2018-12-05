@@ -1,6 +1,7 @@
 ﻿using Mvc5Project.DAL;
 using Mvc5Project.Models;
 using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -311,6 +312,33 @@ namespace Mvc5Project.Controllers
         }
 
 
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public ActionResult EditPost(string slug)
+        {
+            var model = CreatePostViewModel(slug);
+            return View(model);
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult EditPost(PostViewModel model)
+        {
+            var post = _blogRepository.GetPostById(model.ID);
+            post.Body = model.Body;
+            post.Title = model.Title;
+            post.Meta = model.Meta;
+            post.UrlSeo = model.UrlSeo;
+            post.ShortDescription = model.ShortDescription;
+            post.Modified = DateTime.Now;
+            _blogRepository.Save();
+
+            return RedirectToAction("Post", new { slug = model.UrlSeo });
+        }
         #endregion Post
 
 
@@ -353,6 +381,25 @@ namespace Mvc5Project.Controllers
             {
                 checkTagList.Add(new AllPostsViewModel { Tag = tg, Checked = false });
             }
+        }
+
+
+        //helper method to create post view using url slug
+        public PostViewModel CreatePostViewModel(string slug)
+        {
+            PostViewModel model = new PostViewModel();
+            var postid = _blogRepository.GetPostIdBySlug(slug);
+            var post = _blogRepository.GetPostById(postid);
+            model.ID = postid;
+            model.Title = post.Title;
+            model.Body = post.Body;
+            model.Meta = post.Meta;
+            model.UrlSeo = post.UrlSeo;
+            model.Videos = _blogRepository.GetPostVideos(post).ToList();
+            model.PostCategories = _blogRepository.GetPostCategories(post).ToList();
+            model.PostTags = _blogRepository.GetPostTags(post).ToList();
+            model.ShortDescription = post.ShortDescription;
+            return model;
         }
         #endregion
     }
