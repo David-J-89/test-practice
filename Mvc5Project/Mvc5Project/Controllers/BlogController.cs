@@ -339,6 +339,16 @@ namespace Mvc5Project.Controllers
 
             return RedirectToAction("Post", new { slug = model.UrlSeo });
         }
+
+        //[Authorize(Roles = "Admin")]
+        [HttpGet]
+        public ActionResult AddVideoToPost(string postid, string slug)
+        {
+            PostViewModel model = new PostViewModel();
+            model.ID = postid;
+            model.UrlSeo = slug;
+            return View(model);
+        }
         #endregion Post
 
 

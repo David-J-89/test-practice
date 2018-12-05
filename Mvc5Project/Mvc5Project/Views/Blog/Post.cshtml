@@ -15,7 +15,7 @@
 <div id="postScroll">
     <div class="postContainer">
         
-        {
+        <br />
             <div class="postMenu">
                 <div class="postMenuSub">
                     <a href="@Url.Action("EditPost","Blog",new {slug = Model.UrlSeo })" title="Edit">
@@ -28,7 +28,7 @@
                     </a>
                 </div>
             </div>
-        }
+        
         <div class="postHeader">
             @if (Model.ID != Model.FirstPostId)
             {
