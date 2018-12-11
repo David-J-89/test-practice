@@ -5,9 +5,9 @@ namespace LibraryData
 {
     public class LibraryContext : DbContext
     {
-        public LibraryContext(DbContextOptions options) : base(options) { }
+        public LibraryContext(DbContextOptions options) : base(options) { } //constructor to pass the context options to.
 
-        public DbSet<Book> Books { get; set; }
+        public DbSet<Book> Books { get; set; } //dbsets create tables in the db for each of the entity models
         public DbSet<Video> Videos { get; set; }
         public DbSet<Checkout> Checkouts { get; set; }
         public DbSet<CheckoutHistory> CheckoutHistories { get; set; }
@@ -16,7 +16,7 @@ namespace LibraryData
         public DbSet<LibraryCard> LibraryCards { get; set; }
         public DbSet<Patron> Patrons { get; set; }
         public DbSet<Status> Statuses { get; set; }
-        public DbSet<LibraryAsset> LibraryAssets { get; set; }
+        public DbSet<LibraryAsset> LibraryAssets { get; set; } 
         public DbSet<Hold> Holds { get; set; }
     }
 }
