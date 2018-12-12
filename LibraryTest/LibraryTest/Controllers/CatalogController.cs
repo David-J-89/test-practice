@@ -57,6 +57,8 @@ namespace LibraryTest.Controllers
             };
 
             return View(model);
+
+            //14:12 in video, detail.cshtml
         }
     }
 }
