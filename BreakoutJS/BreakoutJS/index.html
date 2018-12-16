@@ -4,6 +4,9 @@
     <meta charset="utf-8" />
     <title></title>
     <style>
+        body{
+            background-color: #191919;
+        }
         canvas{
             background-color: black;
             display: block;
@@ -92,7 +95,25 @@
             ctx.fill();
             ctx.closePath();
         }
-
+        function collDet() {
+            for (var c = 0; c < brickColumnCount; c++) {
+                for (var r = 0; r < brickRowCount; r++) {
+                    var b = bricks[c][r];
+                    if (b.status == 1) {
+                        if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
+                            dy = -dy;
+                            b.status = 0;
+                            score += 7;
+                            //if(score == 13*5*7)
+                            if (score == brickRowCount * brickColumnCount * 7) {
+                                alert("you won")
+                                document.location.reload;
+                            }
+                        }
+                    }
+                }
+            }
+        }
         function drawBricks() {
             for (var c = 0; c < brickColumnCount; c++) {
                 for (var r = 0; r < brickRowCount; r++) {
@@ -117,6 +138,41 @@
                 drawScore();
                 drawLives();
                 drawPaddle();
+                collDet();
+                if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+                    dx = -dx;
+                }
+                if (y + dy < ballRadius) {
+                dy = -dy;
+                }
+                //ball and paddle collision detection
+                else if (y + dy > canvas.height - ballRadius) {
+                    if (x > paddleX && x < paddleX + paddleWidth) {
+                        dx = 8 * ((x - (paddleX + paddleWidth / 2)) / paddleWidth);
+                        dy = -dy;
+                    }
+                else {
+                    lives--;
+                    if (!lives) {
+                        alert("game over");
+                        document.location.reload();
+                    }
+                    else {
+                        x = canvas.width / 2;
+                        y = canvas.height - 30;
+                        dx = 6;
+                        dy = -6;
+                    }
+                }
+            }
+                if (rightPressed && paddleX < canvas.width - paddleWidth / 2) {
+                paddleX += 14;
+                }
+                if (leftPressed && paddleX > -paddleWidth/2) {
+                paddleX -= 14;
+                }
+                x += dx;
+                y += dy;
                 requestAnimationFrame(draw);
         }
         draw();
