@@ -3,18 +3,32 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
     <style>
-        body{
-            background-color: #191919;
-        }
-        canvas{
+        body {
             background-color: black;
+        }
+
+        canvas {
+            background-color: black;
+            border: 1px solid #33FF33;
+            border-radius: 9px 9px 9px 9px;
             display: block;
             margin: 0 auto;
+            font-family: 'Righteous', cursive;
+        }
+
+        h1 {
+            text-align: center;
+            color: #33FF33;
+            font-family: 'Righteous', cursive;
         }
     </style>
 </head>
 <body>
+    <div class="title1">
+    <h1>David's Cyber Arcade</h1>
+    </div>
     <canvas id="myCanvas" width="1200" height="650"></canvas>
     <script>
         var canvas = document.getElementById('myCanvas');
@@ -73,25 +87,25 @@
         }
         function drawScore() {
             ctx.font = "16px Arial";
-            ctxfillStyle = "#0095DD";
+            ctxfillStyle = "#33FF33";
             ctx.fillText("Score: " + score, 8, 20);
         }
         function drawLives() {
             ctx.font = "16px Arial";
-            ctxfillStyle = "#0095DD";
+            ctxfillStyle = "#33FF33";
             ctx.fillText("Lives: " + lives, canvas.width - 65, 20);
         }
         function drawPaddle() {
             ctx.beginPath();
             ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-            ctx.fillStyle = "#0095DD";
+            ctx.fillStyle = "#33FF33";
             ctx.fill();
             ctx.closePath();
         }
         function drawBall() {
             ctx.beginPath();
             ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-            ctx.fillStyle = "#0095DD";
+            ctx.fillStyle = "#33FF33";
             ctx.fill();
             ctx.closePath();
         }
@@ -124,7 +138,7 @@
                         bricks[c][r].y = brickY;
                         ctx.beginPath();
                         ctx.rect(brickX, brickY, brickWidth, brickHeight);
-                        ctx.fillStyle = "#0095DD";
+                        ctx.fillStyle = "#33FF33";
                         ctx.fill();
                         ctx.closePath();
                     }
