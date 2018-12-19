@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>QuickEditor</title>
+    <script>
+        function refresh() {
+            var textContent = document.getElementById('editor-textarea').value;
+            document.getElementById('viewer').srcdoc = textContent;
+        }
+    </script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            background-color: #000;
+        }
+        .main{
+            background: #ecf0f1;
+            width: 100%;
+            height: 100%;
+            display: inline-flex;
+        }
+        #editor-textarea{
+            background: white;
+            width: 100%;
+            height:95%;
+            margin: 10px;
+            padding: 5px;
+        }
+        #viewer{
+            background: white;
+            border: none;
+            width: 100%;
+            height: 100%;
+            margin: 10px;
+            border: 1px solid #3498db;
+        }
+    </style>
+</head>
+<body>
+    <h1>A Real-Time MarkupEditor</h1>
+    <div class="main">
+        <textarea id="editor-textarea" onkeyup="refresh()"
+                   placeholder="Try some html/css/JS..."></textarea>
+        <iframe id="viewer"></iframe>
+    </div> 
+</body>
+</html>
