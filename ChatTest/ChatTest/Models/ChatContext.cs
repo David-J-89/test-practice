@@ -19,5 +19,6 @@ namespace ChatTest.Models
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Conversation> Conversations { get; set; }
     }
 }
