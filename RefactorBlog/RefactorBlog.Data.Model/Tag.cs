@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RefactorBlog.Models.Models
 {
-    class Tag
+    public class Tag
     {
         public string Id { get; set; }
 

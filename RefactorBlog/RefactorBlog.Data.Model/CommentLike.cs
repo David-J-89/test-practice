@@ -2,7 +2,7 @@
 
 namespace RefactorBlog.Models.Models
 {
-    class CommentLike
+    public class CommentLike
     {
         [Key]
         public string CommentId { get; set; }

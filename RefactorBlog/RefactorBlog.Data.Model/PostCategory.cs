@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RefactorBlog.Models.Models
 {
-    class PostCategory
+    public class PostCategory
     {
         [Key]
         [Column(Order = 0)] //lookup what this does.

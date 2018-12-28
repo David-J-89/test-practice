@@ -2,7 +2,7 @@
 
 namespace RefactorBlog.Models.Models
 {
-    class PostVideo
+    public class PostVideo
     {
         public int Id { get; set; }
         [Required]

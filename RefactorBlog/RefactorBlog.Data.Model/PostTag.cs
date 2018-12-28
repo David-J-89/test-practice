@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RefactorBlog.Models.Models
 {
-    class PostTag
+    public class PostTag
     {
         [Key]
         [Column(Order = 0)]

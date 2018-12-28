@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RefactorBlog.Models.Models
 {
-    class Post
+    public class Post
     {
 
         public string Id { get; set; }

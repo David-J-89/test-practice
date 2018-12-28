@@ -259,13 +259,13 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RefactorBlog.Data\RefactorBlog.Data.csproj">
-      <Project>{5b7d8885-2453-463b-ab9c-96da83a3b9c1}</Project>
-      <Name>RefactorBlog.Data</Name>
+    <ProjectReference Include="..\RefactorBlog.Data.Model\RefactorBlog.Data.Model.csproj">
+      <Project>{d68e730c-887b-4811-ba65-99fccd4ebf7b}</Project>
+      <Name>RefactorBlog.Data.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RefactorBlog.Models\RefactorBlog.Models.csproj">
-      <Project>{fa1cec6e-5bd5-40de-aa46-db399403e25a}</Project>
-      <Name>RefactorBlog.Models</Name>
+    <ProjectReference Include="..\RefactorBlog.Data\RefactorBlog.Data.csproj">
+      <Project>{6ce8f4ec-c0a8-4455-b85f-f97e7441b4e1}</Project>
+      <Name>RefactorBlog.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
