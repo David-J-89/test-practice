@@ -25,7 +25,7 @@ namespace OpenWeatherApi.Controllers
             if (cities != null)
             {
                 /*Calling API http://openweathermap.org/api */
-                string apiKey = "f2498059cf2e99d4db1a447286656636";
+                string apiKey = "";
                 HttpWebRequest apiRequest = WebRequest.Create("http://api.openweathermap.org/data/2.5/weather?id=" + cities + "&appid=" + apiKey + "&units=metric") as HttpWebRequest;
 
                 string apiResponse = "";
