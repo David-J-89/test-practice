@@ -67,8 +67,8 @@ namespace OnlineShoppingStore.WebUI.App_Start
             mock.Setup(m => m.Products).Returns(new List<Product>
             {
                 new Product {Name = "Football", Price = 23},
-                new Product {Name = "Surf board", Price = 179},
-                new Product {Name = "Running shoes", Price = 95}
+                new Product {Name = "Surf Board", Price = 179},
+                new Product {Name = "Running Shoes", Price = 95},
             });
             kernel.Bind<IProductRepository>().ToConstant(mock.Object);
         }
