@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefactorBlog.Data", "Refact
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefactorBlog.Models", "RefactorBlog.Models\RefactorBlog.Models.csproj", "{FA1CEC6E-5BD5-40DE-AA46-DB399403E25A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefactorBlog.Data.Model", "RefactorBlog.Data.Model\RefactorBlog.Data.Model.csproj", "{12A34F5F-8B9F-4135-8E50-D31C7758D22D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FA1CEC6E-5BD5-40DE-AA46-DB399403E25A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA1CEC6E-5BD5-40DE-AA46-DB399403E25A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA1CEC6E-5BD5-40DE-AA46-DB399403E25A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12A34F5F-8B9F-4135-8E50-D31C7758D22D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12A34F5F-8B9F-4135-8E50-D31C7758D22D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12A34F5F-8B9F-4135-8E50-D31C7758D22D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12A34F5F-8B9F-4135-8E50-D31C7758D22D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
