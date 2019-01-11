@@ -32,7 +32,16 @@ namespace LibraryAPI.Services
 
         public string GetAuthorOrDirector(int id)
         {
-            throw new NotImplementedException();
+            var isBook = _context.LibraryAssets.OfType<Book>()
+                 .Where(asset => asset.Id == id).Any();
+
+            var isVideo = _context.LibraryAssets.OfType<Video>()
+                .Where(asset => asset.Id == id).Any();
+
+            return isBook ?
+                _context.Books.FirstOrDefault(book => book.Id == id).Author :
+                _context.Videos.FirstOrDefault(video => video.Id == id).Director
+                ?? "Unknown";
         }
 
         public LibraryAsset GetById(int id)
