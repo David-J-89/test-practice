@@ -8,8 +8,8 @@ namespace LibraryAPI.Data
 {
     public interface ILibraryAsset
     {
-        IEnumerable<LibraryAsset> GetAll(); //return all objects of this type
-        LibraryAsset GetById(int id); //get instance of objects by id prop
+        Task<IEnumerable<LibraryAsset>> GetAll(); //return all objects of this type
+        Task<LibraryAsset> GetAsset(int id); //get instance of objects by id prop
 
         void Add(LibraryAsset newAsset); //ability to add new objects of this type to the dataset.
         string GetAuthorOrDirector(int id);

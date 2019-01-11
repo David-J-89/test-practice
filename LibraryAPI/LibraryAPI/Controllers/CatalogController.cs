@@ -26,32 +26,22 @@ namespace LibraryAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var assetModels = await _assets.GetAll();
+            var assets = await _assets.GetAll();
 
-            var listingResult = _mapper.Map<IEnumerable<AssetForListDto>>(assetModels);
+            var assetsToReturn = _mapper.Map<IEnumerable<AssetForListDto>>(assets);
 
-            return Ok(listingResult);
+            return Ok(assetsToReturn);
         }
 
-        public IActionResult Detail(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAsset(int id)
         {
-            var asset = _assets.GetById(id);
+            var asset = await _assets.GetAsset(id);
 
-            var model = new AssetDetailModel
-            {
-                AssetId = id,
-                Title = asset.Title,
-                Year = asset.Year,
-                Cost = asset.Cost,
-                Status = asset.Status.Name,
-                ImageUrl = asset.ImageUrl,
-                AuthorOrDirector = _assets.GetAuthorOrDirector(id),
-                CurrentLocation = _assets.GetCurrentLocation(id).Name,
-                DeweyCallNumber = _assets.GetDeweyIndex(id),
-                ISBN = _assets.GetIsbn(id)
-            };
+            var assetToReturn = _mapper.Map<AssetForDetailedDto>(asset);
 
-            return View(model);
+            return Ok(assetToReturn);
+            
 
             //14:12 in video, detail.cshtml
         }
