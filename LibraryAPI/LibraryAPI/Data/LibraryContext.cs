@@ -9,7 +9,7 @@ namespace LibraryAPI.Data
 {
     public class LibraryContext : DbContext
     {
-        public LibraryContext(DbContextOptions options) : base(options) { } //constructor to pass the context options to.
+        public LibraryContext(DbContextOptions<LibraryContext> options) : base(options) { } //constructor to pass the context options to.
 
         public DbSet<Book> Books { get; set; } //dbsets create tables in the db for each of the entity models
         public DbSet<Video> Videos { get; set; }
