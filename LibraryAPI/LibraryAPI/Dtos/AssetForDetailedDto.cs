@@ -31,4 +31,4 @@ namespace LibraryAPI.Dtos
         public string HoldPlaced { get; set; }
     }
 }
-}
+
